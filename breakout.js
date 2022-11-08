@@ -69,7 +69,7 @@ function play() {
     initBricks();
 
     game.sfx && sounds.breakout.play();
-    // Start music after starting sound ends.
+    
     setTimeout(() => game.music && sounds.music.play(), 2000);
 
     animate();
@@ -93,8 +93,8 @@ function initSounds() {
 function resetBall() {
     ball.x = canvas.width / 2;
     ball.y = canvas.height - paddle.height - 2 * ball.radius;
-    ball.dx = game.speed * (Math.random() * 2 - 1);  // Random trajectory
-    ball.dy = -game.speed; // Up
+    ball.dx = game.speed * (Math.random() * 2 - 1);  
+    ball.dy = -game.speed; 
 }
 
 function resetPaddle() {
@@ -215,9 +215,7 @@ function detectCollision() {
         ball.dy = -ball.dy;
         ball.y = canvas.height - paddle.height - 2 * ball.radius;
         game.sfx && sounds.paddle.play();
-        // TODO change this logic to angles with sin/cos
-        // Change x depending on where on the paddle the ball bounces.
-        // Bouncing ball more on one side draws ball a little to that side.
+        
         const drawingConst = 5
         const paddleMiddle = 2;
         const algo = (((ball.x - paddle.x) / paddle.width) * drawingConst);
@@ -257,7 +255,7 @@ function detectCollisionDirection(brick) {
 
     if (hitFromLeft() || hitFromRight()) {
       ball.dx = -ball.dx;
-    } else { // Hit from above or below
+    } else { 
       ball.dy = -ball.dy;
     }
 }
